@@ -267,6 +267,16 @@
     color: #6bb7e9;
     text-decoration: none;
   }
+  @media (max-width: 768px) {
+    .hf-card {
+      width: 100%;          
+      box-sizing: border-box; 
+      overflow-wrap: break-word; 
+      word-break: break-word;   
+      font-size: 0.9rem;    
+      padding: 16px;        
+    }
+  }
   .grid-container {
     display: flex;
     flex-direction: column;
