@@ -82,7 +82,7 @@
   }
   .about {
     display: flex;
-    align-items: top;
+    align-items: center;
     gap: 24px;
     background: #ffffff;
     padding: 25px;
@@ -93,7 +93,6 @@
   .about img {
     width: 220px;
     border-radius: 22px;
-    flex-shrink: 0;
   }
   
   .about-text h3 {
