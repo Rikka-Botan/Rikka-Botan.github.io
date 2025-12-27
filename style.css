@@ -263,12 +263,6 @@
     box-shadow: 0 6px 20px rgba(200, 230, 255, 0.4);
     text-align: left;
   }
-  .hf-card img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
   .hf-card h3 a {
     color: #6bb7e9;
     text-decoration: none;
