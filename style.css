@@ -12,6 +12,7 @@
   }
 
   header {
+    position: sticky;
     background: #ffffffcc;
     backdrop-filter: blur(6px);
     padding: 20px 30px;
@@ -19,6 +20,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #e6f4ff;
+    z-index: 1000;
   }
   
   header h1 {
@@ -31,30 +33,35 @@
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 1001;
+    position: relative;
   }
   
   .nav-links {
     display: flex;
     gap: 20px;
   }
-  
-  /* モバイル用 */
+
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
+      z-index: 1000;
     }
     .nav-links {
-      display: none;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      background: #ffffffcc;
-      backdrop-filter: blur(6px);
-      padding: 15px 20px;
-      border-radius: 12px;
-      position: absolute;
-      top: 70px;
-      left: 0;
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        background: #ffffffcc;
+        backdrop-filter: blur(6px);
+        padding: 15px 20px;
+        border-radius: 12px;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        z-index: 999;
+        max-height: calc(100vh - 50px);
+        overflow-y: auto;
     }
     .nav-links.active {
       display: flex;
@@ -140,7 +147,20 @@
     color: #777;
     line-height: 1.6;
   }
-
+  @media (max-width: 600px) {
+    .about {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .about img {
+      width: 50%;    
+      max-width: 220px; 
+    }
+    .about p {
+      width: 100%;
+    }
+  }
   .project {
     background: #ffffff;
     padding: 25px;
