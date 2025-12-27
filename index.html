@@ -8,18 +8,20 @@
 </head>
 <body>
 
-  <header>
+<header>
     <h1>🩵Rikka Botan | Portfolio🩵</h1>
-    <nav>
-      <a href="#about">🩵About</a>
-      <a href="#Research projects">🩵Projects</a>
-      <a href="#articles">🩵Articles</a>
-      <a href="#github-repos">🩵Repos</a>
-      <a href="#hf-models">🩵Models</a>
-      <a href="#activities">🩵Activities</a>
-      <a href="#contact">🩵Contact</a>
+    <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
+    <nav class="nav-links">
+        <a href="#about">🩵About</a>
+        <a href="#Research projects">🩵Projects</a>
+        <a href="#articles">🩵Articles</a>
+        <a href="#github-repos">🩵Repos</a>
+        <a href="#hf-models">🩵Models</a>
+        <a href="#activities">🩵Activities</a>
+        <a href="#contact">🩵Contact</a>
     </nav>
-  </header>
+    </header>
+      
 
   <main>
 
@@ -69,8 +71,7 @@
       </section>
       
     <script>
-    const qiitaUser = "peony_snow"; // Qiita のユーザーID
-
+    const qiitaUser = "peony_snow";
     fetch(`https://qiita.com/api/v2/users/${qiitaUser}/items?per_page=50`)
     .then(res => res.json())
     .then(articles => {

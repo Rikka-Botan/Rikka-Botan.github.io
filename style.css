@@ -25,7 +25,42 @@
     font-size: 1.5rem;
     color: #6bb7e9;
   }
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
   
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* モバイル用 */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      background: #ffffffcc;
+      backdrop-filter: blur(6px);
+      padding: 15px 20px;
+      border-radius: 12px;
+      position: absolute;
+      top: 70px;
+      left: 0;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+  }
+    
   nav a {
     margin-left: 20px;
     text-decoration: none;
@@ -91,7 +126,8 @@
   }
   
   .about img {
-    width: 220px;
+    max-width: 220px;
+    width: 30%;
     border-radius: 22px;
   }
   
