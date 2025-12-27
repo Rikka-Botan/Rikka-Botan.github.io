@@ -1,16 +1,19 @@
+/* 全体リセット */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
+  /* ベース */
   body {
     font-family: "Rounded Mplus 1c", "Hiragino Maru Gothic ProN", sans-serif;
     line-height: 1.7;
     background: linear-gradient(180deg, #f0faff, #fff5f9);
     color: #555;
   }
- 
+  
+  /* ヘッダー */
   header {
     background: #ffffffcc;
     backdrop-filter: blur(6px);
@@ -38,6 +41,7 @@
     color: #6bb7e9;
   }
   
+  /* メイン */
   main {
     max-width: 800px;
     margin: 60px auto;
@@ -47,7 +51,8 @@
   section {
     margin-bottom: 80px;
   }
-
+  
+  /* ヒーロー */
   .hero {
     text-align: left;
     padding: 60px 20px;
@@ -68,12 +73,14 @@
     color: #888;
   }
   
+  /* セクションタイトル */
   section h2 {
     font-size: 1.4rem;
     margin-bottom: 20px;
     color: #f29ac1;
   }
   
+  /* About */
   #about p {
     background: #ffffff;
     padding: 25px;
@@ -140,6 +147,7 @@
     box-shadow: 0 6px 15px rgba(180, 200, 255, 0.6);
   }
   
+  /* Contact */
   #contact p {
     background: #ffffff;
     padding: 25px;
@@ -153,6 +161,7 @@
     font-weight: 200;
   }
   
+  /* フッター */
   footer {
     text-align: center;
     padding: 25px;
@@ -300,6 +309,7 @@
     animation: sway-smooth 5s linear infinite;
     transform-origin: top center;
   }
+  /* ===== Activities ===== */
 
 .activities-grid {
     display: grid;
@@ -316,21 +326,25 @@
     position: relative;
   }
   
+  /* 日付 */
   .activity-date {
     font-size: 0.85rem;
     color: #6bb7e9;
   }
   
+  /* タイトル */
   .activity-card h3 {
     margin: 6px 0 10px;
     font-size: 1.05rem;
   }
   
+  /* 説明 */
   .activity-card p {
     font-size: 0.9rem;
     line-height: 1.6;
   }
   
+  /* タグ */
   .activity-tag {
     display: inline-block;
     margin-top: 12px;
@@ -340,3 +354,8 @@
     background: #f0f8ff;
     color: #6bb7e9;
   }
+  
+  
+  
+  
+  
