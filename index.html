@@ -82,7 +82,6 @@
         return;
         }
 
-        // いいね数でソート（降順）
         articles.sort((a, b) => b.likes_count - a.likes_count);
 
         const createCard = (article) => {
@@ -100,11 +99,9 @@
             return card;
         };
 
-        // 上位5記事を表示
         const top5 = articles.slice(0, 3);
         top5.forEach(article => container.appendChild(createCard(article)));
 
-        // 残りの記事は折りたたみ表示
         const rest = articles.slice(3);
         if (rest.length > 0) {
         const details = document.createElement("details");
@@ -136,7 +133,6 @@
           const container = document.getElementById("repo-list");
           container.innerHTML = "";
       
-          // ⭐ Star数で降順ソート
           repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
       
           const createCard = (repo) => {
@@ -150,12 +146,10 @@
             return card;
           };
       
-          // 上位3つ
           repos.slice(0, 3).forEach(repo => {
             container.appendChild(createCard(repo));
           });
       
-          // 残りを折りたたみ
           const rest = repos.slice(3);
           if (rest.length > 0) {
             const details = document.createElement("details");
@@ -181,7 +175,6 @@
           const container = document.getElementById("hf-list");
           container.innerHTML = "";
       
-          // ❤️ Likesで降順ソート
           models.sort((a, b) => (b.likes || 0) - (a.likes || 0));
       
           const createCard = (m) => {
@@ -195,12 +188,10 @@
             return card;
           };
       
-          // 上位3つ
           models.slice(0, 3).forEach(m => {
             container.appendChild(createCard(m));
           });
       
-          // 残りを折りたたみ
           const rest = models.slice(3);
           if (rest.length > 0) {
             const details = document.createElement("details");
