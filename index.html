@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rikka Botan | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🩵Rikka Botan | Portfolio🩵</h1>
+    <nav>
+      <a href="#about">🩵About</a>
+      <a href="#Research projects">🩵Projects</a>
+      <a href="#articles">🩵Articles</a>
+      <a href="#github-repos">🩵Repos</a>
+      <a href="#hf-models">🩵Models</a>
+      <a href="#activities">🩵Activities</a>
+      <a href="#contact">🩵Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <img class="project-img" src="images/RikkaBotan_Logo.png" alt="logo">
+      <h2>Japanese independent Researcher</h2>
+      <p>
+        My primary area of interest is the architecture of language models.<br>
+        In particular, I study efficiency-enhancing techniques such as state space models, liquid time-constant networks, and Mixture of Experts (MoE).<br>
+        I am also investigating novel architectures based on principles from probabilistic statistics and algebra.
+      </p>
+    </section>
+
+    <section id="about">
+      <h2>🌟About me</h2>
+      <section class="about">
+        <img class="image-img" src="images/RikkaBotan.jpeg" alt="image">
+        <p>
+            Having shy and pampered personality. <br>
+            Twin-tail hair is a charm point.<br>
+            I love cute clothes in pastel colors, and frills and lace always make my heart skip a beat.<br>
+            I enjoy baking, and baked cheesecakes are my specialty.<br>
+            I also love tea, especially "Earl Grey" and "Arabian Night".
+        </p>
+      </section>
+    </section>
+      
+    <section id="Research projects">
+      <h2>🌟Projects</h2>
+      <div class="project">
+        <h3>SEA Model series projects</h3>
+        <p>Research on highly efficient and highly accurate large language models</p>
+        <img class="project-img" src="images/SEAModel_series.gif" alt="SEAGIF">
+        <h3>SEA Model series Op.0: Saint Iberis</h3>
+        <img class="sea-project-img" src="images/Saint_Iberis_logo.png" alt="SaintIberis">
+        <h3>SEA Model series Op.1: Saint Lupinus</h3>
+        <img class="sea-project-img" src="images/SaintLupinus.png" alt="SaintLupinus">
+        <h3>SEA Model series Op.2: Saint Plumeria</h3>
+        <img class="sea-project-img" src="images/SaintPlumeria_logo.jpg" alt="SaintPlumeria">
+      </div>
+
+    </section>
+
+    <section id="articles">
+        <h2>🌟Articles</h2>
+        <div id="qiita-list"></div>
+      </section>
+      
+    <script>
+    const qiitaUser = "peony_snow"; // Qiita のユーザーID
+
+    fetch(`https://qiita.com/api/v2/users/${qiitaUser}/items?per_page=50`)
+    .then(res => res.json())
+    .then(articles => {
+        const container = document.getElementById("qiita-list");
+        container.innerHTML = "";
+
+        if (!articles || articles.length === 0) {
+        container.innerHTML = "<p>No articles found.</p>";
+        return;
+        }
+
+        // いいね数でソート（降順）
+        articles.sort((a, b) => b.likes_count - a.likes_count);
+
+        const createCard = (article) => {
+            const card = document.createElement("div");
+            card.className = "qiita-card";
+            card.innerHTML = `
+                <div class="card-header">
+                    <img class="qiita-icon" src="images/qiita_icon.png" alt="qiita">
+                    <span class="user-name">Qiita</span>
+                </div>
+                <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
+                <p>❤️ ${article.likes_count} Likes</p>
+                <p>🎵 ${new Date(article.updated_at).toLocaleDateString()}</p>
+            `;
+            return card;
+        };
+
+        // 上位5記事を表示
+        const top5 = articles.slice(0, 3);
+        top5.forEach(article => container.appendChild(createCard(article)));
+
+        // 残りの記事は折りたたみ表示
+        const rest = articles.slice(3);
+        if (rest.length > 0) {
+        const details = document.createElement("details");
+        details.innerHTML = `<summary>other articles (${rest.length} 件)</summary>`;
+        const grid = document.createElement("div");
+        grid.className = "grid-container";
+        rest.forEach(article => grid.appendChild(createCard(article)));
+        details.appendChild(grid);
+        container.appendChild(details);
+        }
+    })
+    .catch(err => {
+        console.error("API Error:", err);
+        document.getElementById("qiita-list").innerHTML = "<p>Failed to load articles.</p>";
+    });
+    </script>
+
+    <section id="github-repos">
+        <h2>🌟 GitHub Repositories</h2>
+        <div id="repo-list"></div>
+      </section>
+      
+      <script>
+      const username = "Rikka-Botan";
+      
+      fetch(`https://api.github.com/users/${username}/repos`)
+        .then(res => res.json())
+        .then(repos => {
+          const container = document.getElementById("repo-list");
+          container.innerHTML = "";
+      
+          // ⭐ Star数で降順ソート
+          repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+      
+          const createCard = (repo) => {
+            const card = document.createElement("div");
+            card.className = "repo-card";
+            card.innerHTML = `
+              <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+              <p>${repo.description || "説明なし"}</p>
+              <p>⭐ ${repo.stargazers_count}</p>
+            `;
+            return card;
+          };
+      
+          // 上位3つ
+          repos.slice(0, 3).forEach(repo => {
+            container.appendChild(createCard(repo));
+          });
+      
+          // 残りを折りたたみ
+          const rest = repos.slice(3);
+          if (rest.length > 0) {
+            const details = document.createElement("details");
+            details.innerHTML = `<summary>other repositories (${rest.length})</summary>`;
+            rest.forEach(repo => details.appendChild(createCard(repo)));
+            container.appendChild(details);
+          }
+        })
+        .catch(err => console.error("GitHub API Error", err));
+      </script>      
+    
+      <section id="hf-models">
+        <h2>🌟 Hugging Face Models</h2>
+        <div id="hf-list"></div>
+      </section>
+      
+      <script>
+      const hfUser = "RikkaBotan";
+      
+      fetch(`https://huggingface.co/api/models?author=${hfUser}`)
+        .then(res => res.json())
+        .then(models => {
+          const container = document.getElementById("hf-list");
+          container.innerHTML = "";
+      
+          // ❤️ Likesで降順ソート
+          models.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+      
+          const createCard = (m) => {
+            const card = document.createElement("div");
+            card.className = "hf-card";
+            card.innerHTML = `
+              <h3><a href="https://huggingface.co/${m.modelId}" target="_blank">${m.modelId}</a></h3>
+              <p>${m.pipeline_tag || ""}</p>
+              <p>❤️ ${m.likes || 0} Likes</p>
+            `;
+            return card;
+          };
+      
+          // 上位3つ
+          models.slice(0, 3).forEach(m => {
+            container.appendChild(createCard(m));
+          });
+      
+          // 残りを折りたたみ
+          const rest = models.slice(3);
+          if (rest.length > 0) {
+            const details = document.createElement("details");
+            details.innerHTML = `<summary>other models (${rest.length})</summary>`;
+            rest.forEach(m => details.appendChild(createCard(m)));
+            container.appendChild(details);
+          }
+        })
+        .catch(err => console.error("HF API Error", err));
+      </script>     
+    
+      <section id="activities">
+        <h2>🌟 Activities</h2>
+      
+        <div class="activities-grid">
+      
+          <div class="activity-card">
+            <span class="activity-date">2025.10</span>
+            <h3>🥈Silver Award: Liquid AI Hackathon Series | Tokyo </h3>
+            <p>
+                Our team won the Silver Award in the Liquid AI Hackathon Series held in Tokyo. We developed a vision-language model and application specialized for casual, conversational interactions.
+            </p>
+            <span class="activity-tag">Competition</span>
+          </div>
+
+        </div>
+      </section>
+      
+
+    <section id="contact">
+        <h2>🌟Contact</h2>
+        <div class="project">
+            <a href="https://x.com/peony__snow" target="_blank">
+                Rikka Botan's X(Twitter) account
+            </a><br />
+        </div>
+        </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Rikka Botan</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
