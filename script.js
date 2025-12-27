@@ -14,7 +14,6 @@ const targets = document.querySelectorAll(
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
   
-          // 表示後の演出
           entry.target.classList.add("sway");
   
           observer.unobserve(entry.target);
