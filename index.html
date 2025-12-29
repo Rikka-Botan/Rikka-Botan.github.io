@@ -37,17 +37,62 @@
 
     <section id="about">
       <h2>🌟About me</h2>
+    
       <section class="about">
-        <img class="image-img" src="images/RikkaBotan.jpeg" alt="image">
+        <div class="slider">
+          <div class="slider-track">
+            <img src="images/RikkaBotan1.jpeg" alt="">
+            <img src="images/RikkaBotan2.jpeg" alt="">
+            <img src="images/RikkaBotan3.jpeg" alt="">
+            <img src="images/RikkaBotan4.jpeg" alt="">
+            <img src="images/RikkaBotan5.jpeg" alt="">
+            <img src="images/RikkaBotan6.jpeg" alt="">
+            <img src="images/RikkaBotan7.jpeg" alt="">
+          </div>
+        </div>
+    
         <p>
-            Having shy and pampered personality. <br>
-            Twin-tail hair is a charm point.<br>
-            I love cute clothes in pastel colors, and frills and lace always make my heart skip a beat.<br>
-            I enjoy baking, and baked cheesecakes are my specialty.<br>
-            I also love tea, especially "Earl Grey" and "Arabian Night".
+          Having shy and pampered personality. <br>
+          Twin-tail hair is a charm point.<br>
+          I love cute clothes in pastel colors, and frills and lace always make my heart skip a beat.<br>
+          I enjoy baking, and baked cheesecakes are my specialty.<br>
+          I also love tea, especially "Earl Grey" and "Arabian Night".
         </p>
       </section>
     </section>
+    <script>
+      const slider = document.querySelector(".slider");
+      const track = document.querySelector(".slider-track");
+      const images = document.querySelectorAll(".slider-track img");
+    
+      let loaded = 0;
+      let minHeight = Infinity;
+    
+      images.forEach(img => {
+        img.addEventListener("load", () => {
+          loaded++;
+    
+          const height = img.getBoundingClientRect().height;
+          minHeight = Math.min(minHeight, height);
+    
+          if (loaded === images.length) {
+            slider.style.height = `${minHeight}px`;
+    
+            images.forEach(i => {
+              i.style.height = "100%";
+              i.style.objectFit = "cover";
+            });
+          }
+        });
+      });
+    
+      let index = 0;
+      setInterval(() => {
+        index = (index + 1) % images.length;
+        track.style.transform = `translateX(-${index * 40}%)`;
+      }, 3000);
+    </script>
+    
       
     <section id="Research projects">
       <h2>🌟Projects</h2>
@@ -210,12 +255,30 @@
         <div class="activities-grid">
       
           <div class="activity-card">
+            <span class="activity-date">2025.12</span>
+            <h3>An exhibition at ローカルAIに向き合う展示会</h3>
+            <p>
+                I exhibited “LTCs: Explanation of convergence and system stability of linear dynamical systems in Liquid Time-Constant networks and applicability of LTCs”
+            </p>
+            <span class="activity-tag">Exhibition</span>
+          </div>
+
+          <div class="activity-card">
             <span class="activity-date">2025.10</span>
             <h3>🥈Silver Award: Liquid AI Hackathon Series | Tokyo </h3>
             <p>
                 Our team won the Silver Award in the Liquid AI Hackathon Series held in Tokyo. We developed a vision-language model and application specialized for casual, conversational interactions.
             </p>
             <span class="activity-tag">Competition</span>
+          </div>
+
+          <div class="activity-card">
+            <span class="activity-date">2025.09</span>
+            <h3>An exhibition at 生成AIなんでも展示会 Vol.4</h3>
+            <p>
+                I exhibited “Projective Representations and Language Model Construction Based on Duality”
+            </p>
+            <span class="activity-tag">Exhibition</span>
           </div>
 
         </div>
