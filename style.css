@@ -141,6 +141,25 @@
     color: #777;
     line-height: 1.6;
   }
+  .slider {
+    width: 40%;        
+    max-width: 250px;
+    overflow: hidden;
+    border-radius: 16px;
+    flex: 0 0 auto; 
+  }
+
+  .slider-track {
+    display: flex;
+    width: 250%;
+    transition: transform 0.6s ease;
+  }
+
+  .slider-track img {
+    width: 40%;      
+    height: 40%;
+    object-fit: cover;
+  }
   @media (max-width: 600px) {
     .about {
       flex-direction: column;
@@ -216,25 +235,6 @@
     border-radius: 14px;
     margin-bottom: 15px;
     box-shadow: 0 6px 18px rgba(180, 200, 255, 0.4);
-  }
-  .slider {
-    width: 40%;        
-    max-width: 250px;
-    overflow: hidden;
-    border-radius: 16px;
-    flex: 0 0 auto; 
-  }
-
-  .slider-track {
-    display: flex;
-    width: 250%;
-    transition: transform 0.6s ease;
-  }
-
-  .slider-track img {
-    width: 40%;      
-    height: 40%;
-    object-fit: cover;
   }
 
   #links {
@@ -402,6 +402,27 @@
     border-radius: 999px;
     background: #f0f8ff;
     color: #6bb7e9;
+  }
+  .falling-flower {
+    position: fixed;
+    top: -60px;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 20px;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: 1, infinite;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  @keyframes sway {
+    0%   { margin-left: 0px; }
+    50%  { margin-left: 140px; }
+    100% { margin-left: 0px; }
   }
   
   
