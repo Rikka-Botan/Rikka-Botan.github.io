@@ -68,6 +68,7 @@
         const heights = [...images].map(img => img.offsetHeight);
         slider.style.height = Math.min(...heights) + "px";
       });
+      ro.observe(slider);
     
       let loaded = 0;
       let minHeight = Infinity;
@@ -91,10 +92,12 @@
       });
     
       let index = 0;
-      setInterval(() => {
-        index = (index + 1) % images.length;
-        track.style.transform = `translateX(-${index * 40}%)`;
-      }, 3000);
+      window.addEventListener("load", () => {
+        setInterval(() => {
+          index = (index + 1) % images.length;
+          track.style.transform = `translateX(-${index * slider.clientWidth}px)`;
+        }, 3000);
+      });      
     </script>
     
       
