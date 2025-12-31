@@ -64,6 +64,10 @@
       const slider = document.querySelector(".slider");
       const track = document.querySelector(".slider-track");
       const images = document.querySelectorAll(".slider-track img");
+      const ro = new ResizeObserver(() => {
+        const heights = [...images].map(img => img.offsetHeight);
+        slider.style.height = Math.min(...heights) + "px";
+      });
     
       let loaded = 0;
       let minHeight = Infinity;
