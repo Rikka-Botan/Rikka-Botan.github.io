@@ -142,6 +142,7 @@
     line-height: 1.6;
   }
   .slider {
+    aspect-ratio: 4 / 3;
     width: 40%;        
     max-width: 250px;
     overflow: hidden;
