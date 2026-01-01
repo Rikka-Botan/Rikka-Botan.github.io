@@ -64,10 +64,22 @@
       const slider = document.querySelector(".slider");
       const track = document.querySelector(".slider-track");
       const images = document.querySelectorAll(".slider-track img");
+      let fixed = false;
+
       const ro = new ResizeObserver(() => {
-        const heights = [...images].map(img => img.offsetHeight);
-        slider.style.height = Math.min(...heights) + "px";
+        if (fixed) return;
+
+        const heights = [...images]
+          .map(img => img.getBoundingClientRect().height)
+          .filter(h => h > 0);
+
+        if (heights.length === images.length) {
+          slider.style.height = Math.min(...heights) + "px";
+          fixed = true;
+          ro.disconnect();
+        }
       });
+
       ro.observe(slider);
     
       let loaded = 0;
