@@ -64,43 +64,8 @@
       const slider = document.querySelector(".slider");
       const track = document.querySelector(".slider-track");
       const images = document.querySelectorAll(".slider-track img");
-      let fixed = false;
-
-      const ro = new ResizeObserver(() => {
-        if (fixed) return;
-
-        const heights = [...images]
-          .map(img => img.getBoundingClientRect().height)
-          .filter(h => h > 0);
-
-        if (heights.length === images.length) {
-          slider.style.height = Math.min(...heights) + "px";
-          fixed = true;
-          ro.disconnect();
-        }
-      });
-      ro.observe(slider);
     
       let loaded = 0;
-      let minHeight = Infinity;
-    
-      images.forEach(img => {
-        img.addEventListener("load", () => {
-          loaded++;
-    
-          const height = img.getBoundingClientRect().height;
-          minHeight = Math.min(minHeight, height);
-    
-          if (loaded === images.length) {
-            slider.style.height = `${minHeight}px`;
-    
-            images.forEach(i => {
-              i.style.height = "100%";
-              i.style.objectFit = "cover";
-            });
-          }
-        });
-      });
     
       let index = 0;
       window.addEventListener("load", () => {

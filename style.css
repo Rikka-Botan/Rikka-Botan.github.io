@@ -142,7 +142,7 @@
     line-height: 1.6;
   }
   .slider {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 4;
     width: 40%;        
     max-width: 250px;
     overflow: hidden;
@@ -157,8 +157,7 @@
   }
 
   .slider-track img {
-    width: 40%;      
-    height: 40%;
+    width: 40%;
     object-fit: cover;
   }
   @media (max-width: 600px) {
