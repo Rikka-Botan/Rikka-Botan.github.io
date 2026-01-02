@@ -419,6 +419,7 @@
     animation-name: fall, sway;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: 1, infinite;
+    will-change: transform;
   }
   @keyframes fall {
     to {
