@@ -426,7 +426,7 @@
   }
   @keyframes sway {
     0%   { margin-left: 0px; }
-    50%  { margin-left: 140px; }
+    50%  { margin-left: 60px; }
     100% { margin-left: 0px; }
   }
 
