@@ -40,11 +40,11 @@ const targets = document.querySelectorAll(
     flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
   
     const size = 24 + Math.random() * 32;
-    const duration = 6 + Math.random() * 12;
+    const duration = 3 + Math.random() * 6;
   
     flower.style.left = Math.random() * window.innerWidth + "px";
     flower.style.fontSize = size + "px";
-    flower.style.animationDuration = `${duration}s, ${6 + Math.random() * 8}s`;
+    flower.style.animationDuration = `${duration}s, ${3 + Math.random() * 4}s`;
   
     document.body.appendChild(flower);
   
