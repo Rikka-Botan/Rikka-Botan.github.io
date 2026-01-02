@@ -411,7 +411,6 @@
     color: #6bb7e9;
   }
   .falling-flower {
-    will-change: transform;
     position: fixed;
     top: -60px;
     pointer-events: none;
@@ -436,7 +435,6 @@
   header h1,
   section h2{
     display: inline-block;
-    will-change: transform;
   }
 
   @keyframes rotateYOnce {

@@ -52,7 +52,7 @@ const targets = document.querySelectorAll(
       flower.remove();
     }, duration * 1000);
   }
-  setInterval(createFlower, 300);
+  setInterval(createFlower, 600);
   
 
 document.addEventListener("DOMContentLoaded", () => {
