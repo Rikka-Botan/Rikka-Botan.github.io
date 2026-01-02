@@ -411,6 +411,7 @@
     color: #6bb7e9;
   }
   .falling-flower {
+    will-change: transform;
     position: fixed;
     top: -60px;
     pointer-events: none;
@@ -419,7 +420,6 @@
     animation-name: fall, sway;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: 1, infinite;
-    will-change: transform;
   }
   @keyframes fall {
     to {
