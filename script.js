@@ -40,11 +40,11 @@ const targets = document.querySelectorAll(
     flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
   
     const size = 24 + Math.random() * 32;
-    const duration = 3 + Math.random() * 6;
+    const duration = 6 + Math.random() * 12;
   
     flower.style.left = Math.random() * window.innerWidth + "px";
     flower.style.fontSize = size + "px";
-    flower.style.animationDuration = `${duration}s, ${3 + Math.random() * 4}s`;
+    flower.style.animationDuration = `${duration}s, ${6 + Math.random() * 8}s`;
   
     document.body.appendChild(flower);
   
@@ -52,7 +52,7 @@ const targets = document.querySelectorAll(
       flower.remove();
     }, duration * 1000);
   }
-  setInterval(createFlower, 300);
+  setInterval(createFlower, 1000);
   
 
 document.addEventListener("DOMContentLoaded", () => {
