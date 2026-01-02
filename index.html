@@ -9,10 +9,11 @@
 <body>
 
 <header>
-    <h1>🩵Rikka Botan | Portfolio🩵</h1>
+    <h1>🩵 Rikka Botan | Portfolio 🩵</h1>
     <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
     <nav class="nav-links">
-        <a href="#about">🩵About</a>
+        <a href="#hero">🩵Top</a>
+        <a href="#about">🩵About me</a>
         <a href="#Research projects">🩵Projects</a>
         <a href="#articles">🩵Articles</a>
         <a href="#github-repos">🩵Repos</a>
@@ -25,18 +26,20 @@
 
   <main>
 
-    <section class="hero">
-      <img class="project-img" src="images/RikkaBotan_Logo.png" alt="logo">
-      <h2>Japanese independent Researcher</h2>
-      <p>
-        My primary area of interest is the architecture of language models.<br>
-        In particular, I study efficiency-enhancing techniques such as state space models, liquid time-constant networks, and Mixture of Experts (MoE).<br>
-        I am also investigating novel architectures based on principles from probabilistic statistics and algebra.
-      </p>
+    <section id="hero">
+      <section class="hero">
+        <img class="project-img" src="images/RikkaBotan_Logo.png" alt="logo">
+        <h2>🩵 Japanese independent Researcher 🩵</h2>
+        <p>
+          My primary area of interest is the architecture of language models.<br>
+          In particular, I study efficiency-enhancing techniques such as state space models, liquid time-constant networks, and Mixture of Experts (MoE).<br>
+          I am also investigating novel architectures based on principles from probabilistic statistics and algebra.
+        </p>
+      </section>
     </section>
 
     <section id="about">
-      <h2>🌟About me</h2>
+      <h2>🩵About me</h2>
     
       <section class="about">
         <div class="slider">
@@ -78,10 +81,10 @@
     
       
     <section id="Research projects">
-      <h2>🌟Projects</h2>
+      <h2>🩵Projects</h2>
       <div class="project">
         <h3>SEA Model series projects</h3>
-        <p>Research on highly efficient and highly accurate large language models</p>
+        <p>The goal is to develop high-accuracy, high-speed language models through original improvements to projection representations and model architectures.</p>
         <img class="project-img" src="images/SEAModel_series.gif" alt="SEAGIF">
         <h3>SEA Model series Op.0: Saint Iberis</h3>
         <img class="sea-project-img" src="images/Saint_Iberis_logo.png" alt="SaintIberis">
@@ -94,7 +97,7 @@
     </section>
 
     <section id="articles">
-        <h2>🌟Articles</h2>
+        <h2>🩵Articles</h2>
         <div id="qiita-list"></div>
       </section>
       
@@ -149,7 +152,7 @@
     </script>
 
     <section id="github-repos">
-        <h2>🌟 GitHub Repositories</h2>
+        <h2>🩵GitHub Repositories</h2>
         <div id="repo-list"></div>
       </section>
       
@@ -191,7 +194,7 @@
       </script>      
     
       <section id="hf-models">
-        <h2>🌟 Hugging Face Models</h2>
+        <h2>🩵Hugging Face Models</h2>
         <div id="hf-list"></div>
       </section>
       
@@ -233,7 +236,7 @@
       </script>     
     
       <section id="activities">
-        <h2>🌟 Activities</h2>
+        <h2>🩵Activities</h2>
       
         <div class="activities-grid">
       
@@ -269,8 +272,9 @@
       
 
     <section id="contact">
-        <h2>🌟Contact</h2>
+        <h2>🩵Contact</h2>
         <div class="project">
+            <p>If you're interested in talks, research collaborations, writing projects, or anything else, I'd love to hear from you.✿♡*.ᕱ⋈ᕱ</p>
             <a href="https://x.com/peony__snow" target="_blank">
                 Rikka Botan's X(Twitter) account
             </a><br />
@@ -282,29 +286,6 @@
   <footer>
     <p>© 2025 Rikka Botan All rights reserved</p>
   </footer>
-  <script>
-    const flowers = ["🩵", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️"];
-    
-    function createFlower() {
-      const flower = document.createElement("div");
-      flower.className = "falling-flower";
-      flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
-    
-      const size = 24 + Math.random() * 32;
-      const duration = 3 + Math.random() * 6;
-    
-      flower.style.left = Math.random() * window.innerWidth + "px";
-      flower.style.fontSize = size + "px";
-      flower.style.animationDuration = `${duration}s, ${3 + Math.random() * 4}s`;
-    
-      document.body.appendChild(flower);
-    
-      setTimeout(() => {
-        flower.remove();
-      }, duration * 1000);
-    }
-    setInterval(createFlower, 300);
-    </script>
     
   <script src="script.js"></script>
 </body>
