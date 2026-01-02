@@ -17,7 +17,6 @@
     left: 0;
     width: 100%;
     background: #ffffffcc;
-    backdrop-filter: blur(6px);
     padding: 5px 20px;
     display: flex;
     justify-content: space-between;
@@ -56,7 +55,6 @@
         gap: 15px;
         width: 100%;
         background: #ffffffcc;
-        backdrop-filter: blur(6px);
         padding: 15px 20px;
         border-radius: 12px;
         position: absolute;
@@ -98,7 +96,7 @@
     padding: 60px 20px;
     background: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(180, 220, 255, 0.6);
+    box-shadow: 0 10px 30px rgba(180, 220, 255, 0.25);
   }
   
   .hero h2 {
@@ -114,7 +112,7 @@
     background: #ffffff;
     padding: 25px;
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(200, 230, 255, 0.6);
+    box-shadow: 0 8px 20px rgba(200, 230, 255, 0.25);
   }
 
   section h2 {
@@ -127,7 +125,7 @@
     background: #ffffff;
     padding: 25px;
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(200, 230, 255, 0.6);
+    box-shadow: 0 8px 20px rgba(200, 230, 255, 0.25);
   }
   .about {
     display: flex;
@@ -136,7 +134,7 @@
     background: #ffffff;
     padding: 25px;
     border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(200, 230, 255, 0.6);
+    box-shadow: 0 8px 25px rgba(200, 230, 255, 0.25);
   }
   
   .about-text h3 {
@@ -182,7 +180,7 @@
     padding: 25px;
     margin-top: 25px;
     border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(200, 230, 255, 0.6);
+    box-shadow: 0 8px 25px rgba(200, 230, 255, 0.25);
   }
   
   .project h3 {
@@ -208,14 +206,14 @@
   
   .project a:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(180, 200, 255, 0.6);
+    box-shadow: 0 6px 15px rgba(180, 200, 255, 0.25);
   }
 
   #contact p {
     background: #ffffff;
     padding: 25px;
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(200, 230, 255, 0.6);
+    box-shadow: 0 8px 20px rgba(200, 230, 255, 0.25);
   }
   
   #contact a {
@@ -235,13 +233,13 @@
     width: 100%;
     border-radius: 14px;
     margin-bottom: 15px;
-    box-shadow: 0 6px 18px rgba(180, 200, 255, 0.6);
+    box-shadow: 0 6px 18px rgba(180, 200, 255, 0.25);
   }
   .sea-project-img {
     width: 50%;
     border-radius: 14px;
     margin-bottom: 15px;
-    box-shadow: 0 6px 18px rgba(180, 200, 255, 0.6);
+    box-shadow: 0 6px 18px rgba(180, 200, 255, 0.25);
   }
 
   #links {
@@ -260,7 +258,7 @@
     border-radius: 14px;
     padding: 20px;
     margin-bottom: 15px;
-    box-shadow: 0 6px 20px rgba(180, 220, 255, 0.6);
+    box-shadow: 0 6px 20px rgba(180, 220, 255, 0.25);
   }
   .repo-card h3 a {
     color: #6bb7e9;
@@ -271,7 +269,7 @@
     border-radius: 14px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 6px 20px rgba(200, 230, 255, 0.6);
+    box-shadow: 0 6px 20px rgba(200, 230, 255, 0.25);
     text-align: left;
   }
   .hf-card h3 a {
@@ -298,7 +296,7 @@
     border-radius: 14px;
     padding: 20px;
     margin-bottom: 15px;
-    box-shadow: 0 6px 20px rgba(180, 220, 255, 0.6);
+    box-shadow: 0 6px 20px rgba(180, 220, 255, 0.25);
   }
   
   .card-header {
