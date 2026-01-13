@@ -447,5 +447,15 @@
   .rotate-y {
     animation: rotateYOnce 1.8s cubic-bezier(.22,1,.36,1);
   }
-  
+
+#intro-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: black;
+}
+
+body.intro-playing {
+  overflow: hidden;
+}
 

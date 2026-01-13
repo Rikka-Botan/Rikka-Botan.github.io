@@ -35,6 +35,7 @@ const targets = document.querySelectorAll(
   const flowers = ["🩵", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️", "❄️"];
     
   function createFlower() {
+    if (document.body.classList.contains("intro-playing")) return;
     const flower = document.createElement("div");
     flower.className = "falling-flower";
     flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
@@ -72,3 +73,111 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+const canvas = document.getElementById("intro-canvas");
+const ctx = canvas.getContext("2d");
+
+if (canvas) {
+  document.body.classList.add("intro-playing");
+
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+
+  let stars = [];
+  let speed = 2;
+  let warp = false;
+  let flashRadius = 0;
+  let flashActive = false;
+  let rotation = 0;
+  let rotationSpeed = 0.01;
+  let rotating = true;
+
+  for (let i = 0; i < 800; i++) {
+    stars.push({
+      x: Math.random() * canvas.width - canvas.width / 2,
+      y: Math.random() * canvas.height - canvas.height / 2,
+      z: Math.random() * canvas.width
+    });
+  }
+
+  let bgShift = 0;
+
+  function drawBackground() {
+    bgShift += warp ? 0.9 : 0.1;
+
+    const grad = ctx.createLinearGradient(
+      0,
+      bgShift % canvas.height,
+      canvas.width,
+      canvas.height + (bgShift % canvas.height)
+    );
+
+    grad.addColorStop(0, "#050014");
+    grad.addColorStop(0.4, "#0b1d3a");
+    grad.addColorStop(0.7, "#2b1055");
+    grad.addColorStop(1, "#050014");
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function drawStars() {
+    drawBackground();
+
+    ctx.save();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.rotate(rotation);
+
+    for (let s of stars) {
+      s.z -= speed;
+      if (s.z <= 1) s.z = 1000;
+
+      const scale = 500 / s.z;
+      ctx.beginPath();
+      ctx.fillStyle = "white";
+      ctx.arc(s.x * scale, s.y * scale, scale * 1.3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawFlash() {
+    flashRadius += 60;
+    const g = ctx.createRadialGradient(
+      canvas.width / 2, canvas.height / 2, flashRadius * 0.2,
+      canvas.width / 2, canvas.height / 2, flashRadius
+    );
+    g.addColorStop(0, "rgba(255,255,255,1)");
+    g.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function animate() {
+    drawStars();
+    if (warp) speed += 0.15;
+    if (flashActive) drawFlash();
+
+    if (rotating) {
+      rotation += rotationSpeed;
+      rotationSpeed *= 0.98;
+      if (rotationSpeed < 0.0001) rotating = false;
+    }
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  setTimeout(() => warp = true, 2000);
+  setTimeout(() => flashActive = true, 5000);
+
+  setTimeout(() => {
+    canvas.remove();
+    document.body.classList.remove("intro-playing");
+  }, 5500);
+
+  window.addEventListener("resize", () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+  });
+}
