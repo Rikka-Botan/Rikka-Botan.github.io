@@ -77,6 +77,19 @@ document.addEventListener("DOMContentLoaded", () => {
 const canvas = document.getElementById("intro-canvas");
 const ctx = canvas.getContext("2d");
 
+function createStar() {
+  const r = Math.random();
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos(2 * Math.random() - 1);
+
+  return {
+    x: Math.sin(phi) * Math.cos(theta) * canvas.width,
+    y: Math.sin(phi) * Math.sin(theta) * canvas.height,
+    z: r * canvas.width + 1
+  };
+}
+
+
 if (canvas) {
   document.body.classList.add("intro-playing");
 
@@ -92,12 +105,10 @@ if (canvas) {
   let rotationSpeed = 0.01;
   let rotating = true;
 
-  for (let i = 0; i < 800; i++) {
-    stars.push({
-      x: Math.random() * canvas.width - canvas.width / 2,
-      y: Math.random() * canvas.height - canvas.height / 2,
-      z: Math.random() * canvas.width
-    });
+  for (let i = 0; i < 1600; i++) {
+    stars.push(
+      createStar()
+    );
   }
 
   let bgShift = 0;
@@ -129,7 +140,7 @@ if (canvas) {
     ctx.rotate(rotation);
 
     for (let s of stars) {
-      s.z -= speed;
+      s.z -= speed * (0.6 + Math.random() * 0.8);
       if (s.z <= 1) s.z = 1000;
 
       const scale = 500 / s.z;
