@@ -20,12 +20,18 @@
       a.href = "diary-entry.html?id=" + encodeURIComponent(e.slug);
       var tags = (e.tags || []).map(function (t) { return "<span>#" + t + "</span>"; }).join("");
       var excerpt = Array.isArray(e.body) ? e.body[0] : (e.body || "");
+      var cover = "";
+      if (e.images && e.images.length) {
+        var c0 = e.images[0];
+        cover = '<img class="diary-cover" src="' + (typeof c0 === "string" ? c0 : c0.src) + '" alt="" loading="lazy">';
+      }
       a.innerHTML =
         '<div class="diary-head">' +
           '<span class="diary-date">' + fmt(e.date) + '</span>' +
           '<span class="diary-spark">' + SPARK + '</span>' +
         '</div>' +
         '<h3>' + e.title + '</h3>' +
+        cover +
         '<p>' + excerpt + '</p>' +
         (tags ? '<div class="diary-tags">' + tags + '</div>' : "") +
         '<span class="diary-more">Read the entry →</span>';

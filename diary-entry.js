@@ -30,6 +30,16 @@
     var paras = (Array.isArray(e.body) ? e.body : [e.body])
       .map(function (p) { return "<p>" + p + "</p>"; }).join("");
 
+    var gallery = "";
+    if (e.images && e.images.length) {
+      gallery = '<div class="diary-gallery">' + e.images.map(function (im) {
+        var src = typeof im === "string" ? im : im.src;
+        var cap = (im && typeof im === "object" && im.caption) ? im.caption : "";
+        return '<figure><img src="' + src + '" alt="' + cap + '" loading="lazy">' +
+          (cap ? '<figcaption>' + cap + '</figcaption>' : "") + '</figure>';
+      }).join("") + '</div>';
+    }
+
     var art = document.createElement("article");
     art.className = "diary-article card";
     art.innerHTML =
@@ -38,7 +48,8 @@
         '<span class="diary-spark">' + SPARK + '</span></div>' +
       '<h1>' + e.title + '</h1>' +
       (tags ? '<div class="diary-tags">' + tags + '</div>' : "") +
-      '<div class="diary-body">' + paras + '</div>';
+      '<div class="diary-body">' + paras + '</div>' +
+      gallery;
     box.innerHTML = "";
     box.appendChild(art);
     if (window.SiteFX) window.SiteFX.reveal(art);

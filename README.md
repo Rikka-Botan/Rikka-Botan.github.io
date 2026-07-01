@@ -40,9 +40,19 @@ top of the list. No HTML needed; the pages rebuild themselves.
   body: [
     "First paragraph.",
     "Second paragraph."
+  ],
+  images: [                     // optional — put files in images/diary/
+    { src: "images/diary/photo1.jpg", caption: "A caption" },
+    "images/diary/photo2.jpg"   // caption is optional
   ]
 },
 ```
+
+**Photos**: drop the image files into the `images/diary/` folder and list
+them in `images`. The first photo becomes the cover on the diary list, and
+all photos appear as a gallery on the entry page. (The `images/diary/*.jpg`
+files currently there are pastel placeholders — replace them with real
+photos, keeping the same file names, or point `src` at your own files.)
 
 **Add an activity** → edit `activities-data.js`:
 
