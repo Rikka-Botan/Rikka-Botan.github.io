@@ -1,38 +1,53 @@
-/* Activities — sort the static cards newest-first, show 4, collapse the rest */
+/* Activities — renders from activities-data.js (window.ACTIVITIES),
+   newest first, showing the 4 most recent and collapsing the rest. */
 (function () {
   "use strict";
+
+  function card(a) {
+    var el = document.createElement("div");
+    el.className = "activity-card";
+    var body = (Array.isArray(a.body) ? a.body : [a.body]).join("<br>");
+    var link = a.link
+      ? '<br><br><a href="' + a.link.url + '" target="_blank" rel="noopener">' + (a.link.label || "Link") + "</a>"
+      : "";
+    el.innerHTML =
+      '<span class="activity-date">' + fmt(a.date) + '</span>' +
+      '<h3>' + a.title + '</h3>' +
+      '<p>' + body + link + '</p>' +
+      '<span class="activity-tag" data-kind="' + a.kind + '">' + a.kind + '</span>';
+    if (window.SiteFX) window.SiteFX.reveal(el);
+    return el;
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
-    var source = document.getElementById("activities-source");
     var target = document.getElementById("activities-container");
-    if (!source || !target) return;
+    if (!target) return;
 
-    var cards = Array.prototype.slice.call(source.querySelectorAll(".activity-card"));
-    cards.sort(function (a, b) {
-      return new Date(b.dataset.date) - new Date(a.dataset.date);
+    var list = (window.ACTIVITIES || []).slice().sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
     });
+    if (!list.length) {
+      target.innerHTML = '<p class="state-msg">No activities yet.</p>';
+      return;
+    }
 
+    target.innerHTML = "";
     var grid = document.createElement("div");
     grid.className = "activities-grid";
-    cards.slice(0, 4).forEach(function (c) {
-      grid.appendChild(c);
-      if (window.SiteFX) window.SiteFX.reveal(c);
-    });
+    list.slice(0, 4).forEach(function (a) { grid.appendChild(card(a)); });
     target.appendChild(grid);
 
-    var rest = cards.slice(4);
+    var rest = list.slice(4);
     if (rest.length) {
       var d = document.createElement("details");
       d.innerHTML = "<summary>Earlier activities (" + rest.length + ")</summary>";
       var g2 = document.createElement("div");
       g2.className = "activities-grid";
-      rest.forEach(function (c) {
-        g2.appendChild(c);
-        if (window.SiteFX) window.SiteFX.reveal(c);
-      });
+      rest.forEach(function (a) { g2.appendChild(card(a)); });
       d.appendChild(g2);
       target.appendChild(d);
     }
-
-    source.remove();
   });
+
+  function fmt(date) { return (date || "").replace(/-/g, "."); }
 })();

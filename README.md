@@ -15,12 +15,49 @@ researcher in language-model architecture). Plain HTML/CSS/JS — no build step.
 | `*.html` | One page each (`<main>` content only; shared UI is injected) |
 | `style.css` | All styling (design tokens, sidebar layout, effects) |
 | `layout.js` | Injects the sidebar, mobile drawer, pager & footer (edit `PAGES` to change nav) |
-| `script.js` | Interactions: reveal, page fade, prefetch, scroll bar, cursor glow, tilt, magnetic buttons |
+| `script.js` | Interactions: scroll reveal, page-transition loader, prefetch, scroll-progress, snow/stars |
 | `intro.js` | One-time star intro on the home page |
 | `slider.js` | About-page photo slider |
-| `diary.js` | Diary entries (edit the `ENTRIES` array to add a post) |
+| **`diary-data.js`** | **Diary entries — edit this to add/change diary posts** |
+| `diary.js` / `diary-entry.js` | Render the diary list and each entry page |
+| **`activities-data.js`** | **Activities — edit this to add/change activities** |
+| `activities.js` | Renders the activities from that data |
 | `articles.js` / `repositories.js` / `models.js` | Live data from Qiita / GitHub / Hugging Face |
-| `activities.js` | Sorts the static activity cards |
+
+## Updating Diary & Activities
+
+Both are edited the same way — open one **data file** and add a block to the
+top of the list. No HTML needed; the pages rebuild themselves.
+
+**Add a diary post** → edit `diary-data.js`:
+
+```js
+{
+  slug: "my-new-post",          // unique id, lowercase-with-dashes
+  date: "2026-07-10",
+  title: "A short title",
+  tags: ["research", "daily"],
+  body: [
+    "First paragraph.",
+    "Second paragraph."
+  ]
+},
+```
+
+**Add an activity** → edit `activities-data.js`:
+
+```js
+{
+  date: "2026-07",
+  kind: "Exhibition",           // Exhibition | Article | Competition | Product
+  title: "What I did",
+  body: ["A sentence describing it."],
+  link: { url: "https://...", label: "Article Link" }   // optional
+},
+```
+
+Newest dates show first automatically; older items collapse under a
+"more" toggle. Save the file and refresh — that's it.
 
 ## Run locally
 

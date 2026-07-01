@@ -21,82 +21,13 @@
     </div>
 
     <section>
-      <div id="activities-container"></div>
-
-      <!-- Source cards (sorted & laid out by activities.js) -->
-      <div id="activities-source" hidden>
-        <div class="activity-card" data-date="2026-06">
-          <span class="activity-date">2026.06</span>
-          <h3>An exhibition at ローカルAIに向き合う展示会 vol.2</h3>
-          <p>I exhibited "Improving the Inference Speed and Evaluating Downstream Performance of NexteraBERT, an Original Bidirectional Encoder Model Based on Liquid Time-Constant Modules"</p>
-          <span class="activity-tag" data-kind="Exhibition">Exhibition</span>
-        </div>
-
-        <div class="activity-card" data-date="2026-05">
-          <span class="activity-date">2026.05</span>
-          <h3>An article titled "SSE Retrieval MRL v2: Regularization of Representation Space and Performance Improvement via Hyperparameter Optimization"</h3>
-          <p>
-            Abstract:<br>
-            Hyperparameter tuning improved representation regularization and performance.<br>
-            We achieve a NanoBEIR mean nDCG@10 of 0.503 with just 256 dims, matching previous 1024-dim models while delivering about 4x faster inference.<br><br>
-            <a href="https://huggingface.co/blog/RikkaBotan/stable-static-embedding-v2-technical-report" target="_blank" rel="noopener">Article Link</a>
-          </p>
-          <span class="activity-tag" data-kind="Article">Article</span>
-        </div>
-
-        <div class="activity-card" data-date="2026-05">
-          <span class="activity-date">2026.05</span>
-          <h3>An exhibition at 生成AIなんでも展示会 vol.5</h3>
-          <p>I exhibited "NexteraBERT: Rethinking Bidirectional Encoder Models with Liquid Time-Constant Modules, Modern Self-Attention, and Separable Dynamic Tanh normalization"</p>
-          <span class="activity-tag" data-kind="Exhibition">Exhibition</span>
-        </div>
-
-        <div class="activity-card" data-date="2026-03">
-          <span class="activity-date">2026.03</span>
-          <h3>An article (almost like an academic paper) titled "SSE (Stable Static Embedding): Unlocking the Potential of Static Embeddings, A Dynamic Tanh Normalization Approach without Speed Penalty"</h3>
-          <p>
-            Abstract:<br>
-            This paper proposes SSE, leveraging Separable DyT to enhance static embedding models.<br>
-            Achieving retrieval performance with half the parameters, it attains an nDCG@10 score of 0.512 on NanoBEIR.<br>
-            By regulating gradient flow and suppressing overfitting, SSE offers a pathway toward faster, more accurate retrieval systems with 16 million parameters.<br><br>
-            <a href="https://huggingface.co/blog/RikkaBotan/stable-static-embedding-technical-report" target="_blank" rel="noopener">Article Link</a>
-          </p>
-          <span class="activity-tag" data-kind="Article">Article</span>
-        </div>
-
-        <div class="activity-card" data-date="2026-02">
-          <span class="activity-date">2026.02</span>
-          <h3>Develop SSE: Stable Static Embedding model with the support of GPU computing resources from ローカルAIに向き合う会</h3>
-          <p>I published a lightweight, faster and powerful embedding model (512 dim and 16M parameters). This achives 0.512 on NanoBEIR mean nDCG@10, outperforming ralated studies. SSE adopts Separable Dynamic Tanh Normalization to control gradient flow and improve the generalizability of expressive spaces.</p>
-          <span class="activity-tag" data-kind="Product">Product</span>
-        </div>
-
-        <div class="activity-card" data-date="2025-12">
-          <span class="activity-date">2025.12</span>
-          <h3>An exhibition at ローカルAIに向き合う展示会</h3>
-          <p>I exhibited "LTCs: Explanation of convergence and system stability of linear dynamical systems in Liquid Time-Constant networks and applicability of LTCs"</p>
-          <span class="activity-tag" data-kind="Exhibition">Exhibition</span>
-        </div>
-
-        <div class="activity-card" data-date="2025-10">
-          <span class="activity-date">2025.10</span>
-          <h3>🥈 Silver Award: Liquid AI Hackathon Series | Tokyo</h3>
-          <p>Our team won the Silver Award in the Liquid AI Hackathon Series held in Tokyo. We developed a vision-language model and application specialized for casual, conversational interactions.</p>
-          <span class="activity-tag" data-kind="Competition">Competition</span>
-        </div>
-
-        <div class="activity-card" data-date="2025-09">
-          <span class="activity-date">2025.09</span>
-          <h3>An exhibition at 生成AIなんでも展示会 Vol.4</h3>
-          <p>I exhibited "Projective Representations and Language Model Construction Based on Duality"</p>
-          <span class="activity-tag" data-kind="Exhibition">Exhibition</span>
-        </div>
-      </div>
+      <div id="activities-container"><p class="state-msg">Loading activities…</p></div>
     </section>
   </main>
 
   <script src="layout.js"></script>
   <script src="script.js"></script>
+  <script src="activities-data.js"></script>
   <script src="activities.js"></script>
 </body>
 </html>

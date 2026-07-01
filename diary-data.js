@@ -1,8 +1,16 @@
 /* =====================================================================
-   Diary entries — the single source of truth for both the list
-   (diary.html) and each entry page (diary-entry.html?id=<slug>).
-   To add an entry: copy a block, give it a unique "slug", and edit.
-   "body" is an array of paragraphs. Sorted by date automatically.
+   DIARY — the single place to edit your diary.
+   ---------------------------------------------------------------------
+   To ADD an entry: copy one { ... } block, paste it at the TOP, and
+   edit the fields. The newest date shows first automatically. Each
+   entry gets its own page at diary-entry.html?id=<slug>.
+
+   Fields:
+     slug  : a unique id for the URL, lowercase-with-dashes (no spaces)
+     date  : "YYYY-MM-DD"
+     title : one line
+     tags  : a list of short words (shown as #tags)
+     body  : a list of paragraphs (each item is one paragraph)
    ===================================================================== */
 window.DIARY_ENTRIES = [
   {
