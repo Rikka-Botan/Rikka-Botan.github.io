@@ -188,7 +188,7 @@ section > h2 { display: inline-block; font-size: 1.3rem; margin-bottom: 16px; co
 }
 .hero-logo {
   width: clamp(260px, 60vw, 480px); height: auto;
-  margin: 0 auto 18px;
+  margin: 26px auto 34px;
   animation: float 5s ease-in-out infinite;
 }
 .hero-kicker { color: var(--pink); font-weight: 700; letter-spacing: .3em; text-transform: uppercase; font-size: .74rem; }
@@ -369,10 +369,10 @@ details > .card-grid, details > .activities-grid { text-align: left; }
 }
 .rb-loader.show { opacity: 1; visibility: visible; }
 .rb-loader .loader-core { position: relative; width: 122px; height: 122px; z-index: 2; }
-.rb-loader .prog-ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.rb-loader .prog-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 1.3s linear infinite; }
 .rb-loader .ring-track { fill: none; stroke: rgba(143, 211, 244, .22); stroke-width: 6; }
-.rb-loader .ring-fill { fill: none; stroke: url(#rbGrad); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 320; stroke-dashoffset: 320; animation: ring-fill 2s ease-in-out infinite; }
-.rb-loader .snowflake { position: absolute; inset: 27px; color: var(--sky); animation: spin 3.6s linear infinite; filter: drop-shadow(0 4px 9px rgba(120, 190, 240, .5)); }
+.rb-loader .ring-fill { fill: none; stroke: url(#rbGrad); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 86 234; }
+.rb-loader .snowflake { position: absolute; inset: 27px; color: var(--sky); animation: spin 3.2s linear infinite reverse; filter: drop-shadow(0 4px 9px rgba(120, 190, 240, .5)); }
 .rb-loader .snowflake svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
 .rb-loader .orbit { position: absolute; inset: -4px; animation: spin 4.6s linear infinite; }
 .rb-loader .orbit i { position: absolute; width: 13px; height: 13px; }
@@ -380,7 +380,6 @@ details > .card-grid, details > .activities-grid { text-align: left; }
 .rb-loader .orbit i:nth-child(1) { top: -4px; left: calc(50% - 6.5px); color: var(--pink); }
 .rb-loader .orbit i:nth-child(2) { bottom: 8px; left: 0; color: var(--sky-soft); }
 .rb-loader .orbit i:nth-child(3) { bottom: 8px; right: 0; color: #ffd07a; }
-@keyframes ring-fill { 0% { stroke-dashoffset: 320; } 55% { stroke-dashoffset: 34; } 100% { stroke-dashoffset: 320; } }
 .rb-loader .cap { z-index: 2; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; font-size: .8rem; color: var(--sky-deep); }
 .rb-loader .cap b { animation: blink 1.4s infinite both; }
 .rb-loader .cap b:nth-child(2) { animation-delay: .2s; }
