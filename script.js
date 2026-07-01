@@ -120,6 +120,14 @@
     var flake = "";
     for (var k = 0; k < 6; k++) flake += '<g transform="rotate(' + (k * 60) + ' 50 50)">' + arm + '</g>';
 
+    var word = "Loading", capHTML = "";
+    for (var w = 0; w < word.length; w++) {
+      capHTML += '<span style="animation-delay:' + (w * 0.09).toFixed(2) + 's">' + word.charAt(w) + '</span>';
+    }
+    for (var dpos = 0; dpos < 3; dpos++) {
+      capHTML += '<b style="animation-delay:' + ((word.length + dpos) * 0.09).toFixed(2) + 's">.</b>';
+    }
+
     el.innerHTML =
       '<div class="loader-core">' +
         '<svg class="prog-ring" viewBox="0 0 122 122">' +
@@ -129,7 +137,7 @@
         '<div class="snowflake"><svg viewBox="0 0 100 100">' + flake + '</svg></div>' +
         '<div class="orbit"><i>' + STAR + '</i><i>' + STAR + '</i><i>' + STAR + '</i></div>' +
       '</div>' +
-      '<div class="cap">Loading<b>.</b><b>.</b><b>.</b></div>';
+      '<div class="cap">' + capHTML + '</div>';
 
     /* scattered twinkling stars */
     var pts = [[12,20],[24,64],[80,24],[86,70],[50,12],[68,84],[32,88],[90,42],[8,50],[58,32]];
