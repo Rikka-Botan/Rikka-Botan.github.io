@@ -7,7 +7,6 @@
   "use strict";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var finePointer = window.matchMedia("(pointer: fine)").matches;
   var revealObserver = null, rvSeq = 0, rvLast = 0;
 
   var STAR = (window.RBIcons && window.RBIcons.star) ||
@@ -38,8 +37,6 @@
     initPrefetch();
     initScrollProgress();
     initParallax();
-    initTilt();
-    initProximity();
     if (!reduceMotion) startSnow();
   });
 
@@ -125,8 +122,10 @@
 
     el.innerHTML =
       '<div class="loader-core">' +
-        '<div class="snowflake"><svg viewBox="0 0 100 100">' + flake + '</svg></div>' +
-        '<div class="orbit"><i>' + STAR + '</i><i>' + STAR + '</i><i>' + STAR + '</i></div>' +
+        '<div class="hop-wrap">' +
+          '<div class="hopper"><svg viewBox="0 0 100 100">' + flake + '</svg></div>' +
+          '<div class="hop-bar"><div class="hop-fill"></div></div>' +
+        '</div>' +
       '</div>' +
       '<div class="cap">Loading<b>.</b><b>.</b><b>.</b></div>';
 
@@ -216,48 +215,6 @@
     }
     window.addEventListener("scroll", function () { if (!ticking) { requestAnimationFrame(upd); ticking = true; } }, { passive: true });
     upd();
-  }
-
-  /* ---- 3D tilt on hover (feature cards) ------------------------- */
-  function initTilt() {
-    if (reduceMotion || !finePointer) return;
-    document.querySelectorAll(".tilt").forEach(function (card) {
-      card.addEventListener("mousemove", function (e) {
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = "perspective(760px) rotateX(" + (-py * 5).toFixed(2) + "deg) rotateY(" + (px * 5).toFixed(2) + "deg) translateY(-4px)";
-      });
-      card.addEventListener("mouseleave", function () { card.style.transform = ""; });
-    });
-  }
-
-  /* ---- proximity magnetism (objects react as cursor nears) ------ */
-  function initProximity() {
-    if (reduceMotion || !finePointer) return;
-    var els = Array.prototype.slice.call(document.querySelectorAll(".btn, .to-top, .sea-card"));
-    if (!els.length) return;
-    var mx = -9999, my = -9999, ticking = false;
-    window.addEventListener("mousemove", function (e) {
-      mx = e.clientX; my = e.clientY;
-      if (!ticking) { requestAnimationFrame(apply); ticking = true; }
-    }, { passive: true });
-    function apply() {
-      ticking = false;
-      for (var i = 0; i < els.length; i++) {
-        var el = els[i], r = el.getBoundingClientRect();
-        var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-        var dx = mx - cx, dy = my - cy, dist = Math.sqrt(dx * dx + dy * dy);
-        var reach = Math.max(r.width, r.height) / 2 + 90;
-        if (dist < reach) {
-          var f = 1 - dist / reach;
-          var k = el.classList.contains("sea-card") ? 0.16 : 0.34;
-          el.style.transform = "translate(" + (dx * k * f).toFixed(1) + "px," + (dy * k * f).toFixed(1) + "px)";
-        } else if (el.style.transform) {
-          el.style.transform = "";
-        }
-      }
-    }
   }
 
   /* ---- ambient falling snow + stars (SVG, no emoji) ------------- */

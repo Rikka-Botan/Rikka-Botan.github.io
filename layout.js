@@ -104,7 +104,7 @@
 
   /* --- pager (all pages except home) -------------------------------- */
   var main = document.querySelector("main");
-  if (main && current !== "index") {
+  if (main && current !== "index" && !document.body.hasAttribute("data-no-pager")) {
     var prev = PAGES[idx - 1] || PAGES[0];
     var next = PAGES[idx + 1] || PAGES[0];
     var pager = document.createElement("nav");
