@@ -8,16 +8,23 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(pointer: fine)").matches;
-  var revealObserver = null;
+  var revealObserver = null, rvSeq = 0, rvLast = 0;
 
   var STAR = (window.RBIcons && window.RBIcons.star) ||
     '<svg viewBox="0 0 24 24"><path d="M12 3l1.6 5L19 9.6l-5.4 1.6L12 16l-1.6-4.8L5 9.6 10.4 8z"/></svg>';
 
+  /* reveal one element; consecutive calls auto-stagger (sequential feel) */
   window.SiteFX = {
-    reveal: function (el) {
+    reveal: function (el, variant) {
       if (!el) return;
       if (reduceMotion || !revealObserver) { el.classList.add("is-visible"); return; }
+      var now = (window.performance && performance.now) ? performance.now() : Date.now();
+      if (now - rvLast > 220) rvSeq = 0;
+      rvLast = now;
       el.classList.add("reveal");
+      if (variant) el.setAttribute("data-v", variant);
+      el.style.transitionDelay = Math.min(rvSeq * 70, 420) + "ms";
+      rvSeq++;
       revealObserver.observe(el);
     }
   };
@@ -47,23 +54,43 @@
     else document.addEventListener("DOMContentLoaded", fn);
   }
 
-  /* ---- scroll reveal -------------------------------------------- */
+  /* ---- scroll reveal: directional, staggered (branding motion) --- */
   function initReveal() {
-    var items = document.querySelectorAll("[data-reveal], main > section, .card, .sea-card, .activity-card, .diary-entry");
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      items.forEach(function (el) { el.classList.add("is-visible"); });
-      return;
-    }
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+
     revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) { entry.target.classList.add("is-visible"); revealObserver.unobserve(entry.target); }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-    items.forEach(function (el, i) {
+    }, { threshold: 0.12, rootMargin: "0px 0px -7% 0px" });
+
+    function add(el, variant, delay) {
+      if (!el) return;
       el.classList.add("reveal");
-      el.style.transitionDelay = Math.min(i * 0.05, 0.35) + "s";
+      if (variant) el.setAttribute("data-v", variant);
+      if (delay) el.style.transitionDelay = delay + "ms";
       revealObserver.observe(el);
+    }
+    function each(sel, fn) { Array.prototype.slice.call(document.querySelectorAll(sel)).forEach(fn); }
+
+    add(document.querySelector(".page-head"), "up", 0);
+
+    /* hero: elements enter one after another */
+    each(".hero > *", function (el, i) {
+      if (el.classList.contains("hero-glow")) return;
+      add(el, "up", i * 110);
     });
+
+    /* about: photo from the left, text from the right */
+    add(document.querySelector(".about-media"), "left", 0);
+    add(document.querySelector(".about > p"), "right", 130);
+
+    /* projects: intro then cards cascade in */
+    add(document.querySelector(".project-intro"), "up", 0);
+    each(".sea-card", function (el, i) { add(el, "up", 130 + i * 110); });
+
+    add(document.querySelector(".contact-card"), "zoom", 0);
+    add(document.querySelector(".pager"), "up", 0);
   }
 
   /* ---- headings spin on hover ----------------------------------- */
@@ -237,17 +264,17 @@
   function startSnow() {
     window.setInterval(function () {
       if (document.hidden || document.body.classList.contains("intro-playing")) return;
-      var star = Math.random() < 0.34;
+      var star = Math.random() < 0.32;
       var f = document.createElement("span");
       f.className = "flake";
-      var sz = star ? (10 + Math.random() * 8) : (6 + Math.random() * 8);
+      var sz = star ? (16 + Math.random() * 13) : (12 + Math.random() * 13);
       f.style.width = sz + "px"; f.style.height = sz + "px";
       f.style.left = (Math.random() * 100) + "vw";
-      var dur = 4 + Math.random() * 4;
+      var dur = 5 + Math.random() * 4;
       f.style.animationDuration = dur + "s, " + (3 + Math.random() * 3) + "s";
       f.innerHTML = star ? '<span class="star">' + STAR + "</span>" : '<span class="dot"></span>';
       document.body.appendChild(f);
       window.setTimeout(function () { f.remove(); }, dur * 1000);
-    }, 1600);
+    }, 900);
   }
 })();
