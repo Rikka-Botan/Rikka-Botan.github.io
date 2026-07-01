@@ -122,10 +122,12 @@
 
     el.innerHTML =
       '<div class="loader-core">' +
-        '<div class="hop-wrap">' +
-          '<div class="hopper"><svg viewBox="0 0 100 100">' + flake + '</svg></div>' +
-          '<div class="hop-bar"><div class="hop-fill"></div></div>' +
-        '</div>' +
+        '<svg class="prog-ring" viewBox="0 0 122 122">' +
+          '<circle class="ring-track" cx="61" cy="61" r="51"/>' +
+          '<circle class="ring-fill" cx="61" cy="61" r="51"/>' +
+        '</svg>' +
+        '<div class="snowflake"><svg viewBox="0 0 100 100">' + flake + '</svg></div>' +
+        '<div class="orbit"><i>' + STAR + '</i><i>' + STAR + '</i><i>' + STAR + '</i></div>' +
       '</div>' +
       '<div class="cap">Loading<b>.</b><b>.</b><b>.</b></div>';
 
