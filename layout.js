@@ -118,8 +118,7 @@
   /* --- footer ------------------------------------------------------- */
   var footer = document.createElement("footer");
   footer.className = "site-footer";
-  footer.innerHTML = '<p>© 2026 Rikka Botan · All rights reserved · made with ' +
-    '<svg class="foot-heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="url(#rbGrad)" d="M12 20.8S3.6 15.3 3.6 9.6C3.6 6.7 5.8 4.8 8.2 4.8c1.7 0 3 .95 3.8 2.1.8-1.15 2.1-2.1 3.8-2.1 2.4 0 4.6 1.9 4.6 4.8 0 5.7-8.4 11.2-8.4 11.2z"/></svg></p>';
+  footer.innerHTML = '<p>© 2026 Rikka Botan · All rights reserved</p>';
   document.body.appendChild(footer);
 
   /* --- drawer behaviour --------------------------------------------- */
